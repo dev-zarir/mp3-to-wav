@@ -23,7 +23,7 @@ def home():
         mp3.write(data)
         mp3.close()
     subprocess.call(['ffmpeg', '-y', '-i', 'static/'+name+'.mp3', 'static/'+name+'.wav'], stdout = subprocess.DEVNULL, stderr = subprocess.STDOUT)
-    return jsonify({'link': (request.base_url+'/static/'+name+'.wav').replace('//','/')})
+    return jsonify({'link': (request.base_url+'/static/'+name+'.wav').replace('//','/').replace(':/','://')})
 
 if __name__=='__main__':
     app.run(host='0.0.0.0', port=80, debug=True)
